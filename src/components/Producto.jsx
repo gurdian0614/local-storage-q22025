@@ -1,5 +1,6 @@
 import Campo from "./Campo"
 import useProducto from "../hooks/useProducto"
+import { useEffect } from "react"
 
 const Producto = () => {
     const {
@@ -17,6 +18,10 @@ const Producto = () => {
         tituloModal,
         deleteProducto
     } = useProducto()
+
+    useEffect(() => {
+        setProductos(getProducto())
+    }, [])
 
     return (
         <div className="container-fluid">
@@ -46,7 +51,10 @@ const Producto = () => {
                                     <td>{i + 1}</td>
                                     <td>{producto.nombre}</td>
                                     <td>{producto.descripcion}</td>
-                                    <td>{producto.precio}</td>
+                                    <td>{producto.precio.toLocaleString("es-HN", {
+                                        style: "currency",
+                                        currency: "HNL",
+                                    })}</td>
                                     <td>
                                         <button className="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalProducto" onClick={() => openModal(2, producto)}><i className="fa-solid fa-edit" /></button>
 
