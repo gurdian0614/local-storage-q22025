@@ -14,6 +14,7 @@ const useProducto = () => {
     const getProducto = () => {
         const localStorageProductos = localStorage.getItem('PRODUCTOS')
         const parsedProductos = localStorageProductos ? JSON.parse(localStorageProductos) : []
+        console.log(parsedProductos)
 
         return Array.isArray(parsedProductos) ? parsedProductos : []
     }
@@ -34,8 +35,9 @@ const useProducto = () => {
             }
         } else if (metodo === 'DELETE') {
             const productoArr = saveUpdateProducto.filter(producto => producto.id !== parametros.id)
-            localStorage.setItem('PRDUCTOS', JSON.stringify(productoArr))
+            localStorage.setItem('PRODUCTOS', JSON.stringify(productoArr))
             alertaSuccess('Producto eliminado correctamente')
+            return
         }
 
         localStorage.setItem('PRODUCTOS', JSON.stringify(saveUpdateProducto))
