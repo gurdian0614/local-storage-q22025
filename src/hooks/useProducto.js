@@ -14,7 +14,6 @@ const useProducto = () => {
     const getProducto = () => {
         const localStorageProductos = localStorage.getItem('PRODUCTOS')
         const parsedProductos = localStorageProductos ? JSON.parse(localStorageProductos) : []
-        console.log(parsedProductos)
 
         return Array.isArray(parsedProductos) ? parsedProductos : []
     }
